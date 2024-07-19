@@ -38,7 +38,7 @@ class Config(BaseSettings):
     BOT_TOKEN: 7297125221:AAF_hS-k7BSBaUDY0f9fL0j54XZdKWfFACQ
     BOT_WORKER: int = 8
     BOT_SESSION: str = "Ayesha121_bot"
-    BOT_MAX_MESSAGE_CACHE_SIZE: int = 100
+    BOT_MAX_MESSAGE_CACHE_SIZE: int = 1250
 
     MONGO_DB_URL: mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla
     MONGO_DB_NAME: str = "pehla"
