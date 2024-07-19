@@ -33,15 +33,15 @@ class Config(BaseSettings):
     HOSTNAME: str = "0.0.0.0"  # noqa: S104
     HTTP_SERVER: bool = True
 
-    API_ID: int
-    API_HASH: str
-    BOT_TOKEN: str
+    API_ID: 27573283
+    API_HASH: eca55c9f1b0a14260e0ee1978aa17b2b
+    BOT_TOKEN: 7297125221:AAF_hS-k7BSBaUDY0f9fL0j54XZdKWfFACQ
     BOT_WORKER: int = 8
     BOT_SESSION: str = "Zaws-File-Share"
     BOT_MAX_MESSAGE_CACHE_SIZE: int = 100
 
-    MONGO_DB_URL: MongoSRVDsn
-    MONGO_DB_NAME: str = "Zaws-File-Share"
+    MONGO_DB_URL: mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla
+    MONGO_DB_NAME: str = "pehla"
 
     # Bot main config
     RATE_LIMITER: bool = True
