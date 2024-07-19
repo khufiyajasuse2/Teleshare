@@ -45,8 +45,8 @@ class Config(BaseSettings):
 
     # Bot main config
     RATE_LIMITER: bool = True
-    BACKUP_CHANNEL: int
-    ROOT_ADMINS_ID: list[int]
+    BACKUP_CHANNEL: -1002202226579
+    ROOT_ADMINS_ID: list[6371924437]
     PRIVATE_REQUEST: bool = False
     PROTECT_CONTENT: bool = True
     FORCE_SUB_CHANNELS: list[int]
