@@ -37,7 +37,7 @@ class Config(BaseSettings):
     API_HASH: eca55c9f1b0a14260e0ee1978aa17b2b
     BOT_TOKEN: 7297125221:AAF_hS-k7BSBaUDY0f9fL0j54XZdKWfFACQ
     BOT_WORKER: int = 8
-    BOT_SESSION: str = "Zaws-File-Share"
+    BOT_SESSION: str = "Ayesha121_bot"
     BOT_MAX_MESSAGE_CACHE_SIZE: int = 100
 
     MONGO_DB_URL: mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla
