@@ -1,36 +1,16 @@
-"""General configuration.
-
-Config: Bot Config
-"""
-
-# ruff: noqa: ARG003
 import logging
 import sys
 from pathlib import Path
-from typing import Annotated, List
+from typing import List
 
-from pydantic import ValidationError, validator
-from pydantic.networks import UrlConstraints
-from pydantic_core import MultiHostUrl
-from pydantic_settings import (
-    BaseSettings,
-    DotEnvSettingsSource,
-    EnvSettingsSource,
-    PydanticBaseSettingsSource,
-    SettingsConfigDict,
-)
-from pydantic_settings.sources import SettingsError
+from pydantic import BaseSettings, validator, ValidationError
+from pydantic_settings import SettingsConfigDict
 
-MongoSRVDsn = Annotated[MultiHostUrl, UrlConstraints(allowed_schemes=["mongodb+srv"])]
 BASE_PATH = Path(__file__).parent.parent
 
-
 class Config(BaseSettings):
-    """A general configuration setup to read either .env or environment keys."""
-
-    # Bot deploy config
     PORT: int = 8080
-    HOSTNAME: str = "0.0.0.0"  # noqa: S104
+    HOSTNAME: str = "0.0.0.0"
     HTTP_SERVER: bool = True
 
     API_ID: int = 27573283
@@ -43,42 +23,29 @@ class Config(BaseSettings):
     MONGO_DB_URL: str = "mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla"
     MONGO_DB_NAME: str = "pehla"
 
-    # Bot main config
     RATE_LIMITER: bool = True
     BACKUP_CHANNEL: int = -1002202226579
-    ROOT_ADMINS_ID: List[int] = ["6371924437"]
+
+    # Updated values with comma-separated strings for lists
+    ROOT_ADMINS_ID: List[int] = [6371924437]  # Single value in a list
     PRIVATE_REQUEST: bool = False
     PROTECT_CONTENT: bool = True
-    FORCE_SUB_CHANNELS: List[int] = ["-1002233922329"]
+    FORCE_SUB_CHANNELS: List[int] = [-1002233922329]  # Single value in a list
     AUTO_GENERATE_LINK: bool = True
 
     model_config = SettingsConfigDict(
         env_file=f"{BASE_PATH}/.env",
     )
 
-    @validator('ROOT_ADMINS_ID', 'FORCE_SUB_CHANNELS', pre=True)
-    def split_string_to_list(cls, v):
+    @validator('ROOT_ADMINS_ID', 'FORCE_SUB_CHANNELS', pre=True, each_item=True)
+    def parse_list(cls, v):
         if isinstance(v, str):
-            return [int(item) for item in v.split(',')]
+            # Convert comma-separated string to list of integers
+            return [int(x) for x in v.split(',') if x]
         return v
-
-    @classmethod
-    def settings_customise_sources(
-        cls,
-        settings_cls: type[BaseSettings],
-        init_settings: PydanticBaseSettingsSource,
-        env_settings: PydanticBaseSettingsSource,
-        dotenv_settings: PydanticBaseSettingsSource,
-        file_secret_settings: PydanticBaseSettingsSource,
-    ) -> tuple[PydanticBaseSettingsSource, ...]:
-        return (
-            DotEnvSettingsSource(settings_cls),
-            EnvSettingsSource(settings_cls),
-        )
-
 
 try:
     config = Config()  # type: ignore[reportCallIssue]
-except (ValidationError, SettingsError):
-    logging.exception("Configuration Error")
+except (ValidationError, SettingsError) as e:
+    logging.exception("Configuration Error: %s", e)
     sys.exit(1)
