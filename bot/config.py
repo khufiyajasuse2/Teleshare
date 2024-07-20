@@ -7,9 +7,9 @@ Config: Bot Config
 import logging
 import sys
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, List
 
-from pydantic import ValidationError
+from pydantic import ValidationError, validator
 from pydantic.networks import UrlConstraints
 from pydantic_core import MultiHostUrl
 from pydantic_settings import (
@@ -33,34 +33,28 @@ class Config(BaseSettings):
     HOSTNAME: str = "0.0.0.0"  # noqa: S104
     HTTP_SERVER: bool = True
 
-    API_ID: 27573283
-    API_HASH: eca55c9f1b0a14260e0ee1978aa17b2b
-    BOT_TOKEN: 7297125221:AAF_hS-k7BSBaUDY0f9fL0j54XZdKWfFACQ
+    API_ID: int = 27573283
+    API_HASH: str = "eca55c9f1b0a14260e0ee1978aa17b2b"
+    BOT_TOKEN: str = "7297125221:AAF_hS-k7BSBaUDY0f9fL0j54XZdKWfFACQ"
     BOT_WORKER: int = 8
     BOT_SESSION: str = "Ayesha121_bot"
     BOT_MAX_MESSAGE_CACHE_SIZE: int = 1250
 
-    MONGO_DB_URL: mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla
+    MONGO_DB_URL: str = "mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla"
     MONGO_DB_NAME: str = "pehla"
 
     # Bot main config
     RATE_LIMITER: bool = True
-    BACKUP_CHANNEL: -1002202226579
-    ROOT_ADMINS_ID: list[int] = ["6371924437"]
+    BACKUP_CHANNEL: int = -1002202226579
+    ROOT_ADMINS_ID: List[int] = ["6371924437"]
     PRIVATE_REQUEST: bool = False
     PROTECT_CONTENT: bool = True
-    FORCE_SUB_CHANNELS: list[int] = ["-1002233922329"]
+    FORCE_SUB_CHANNELS: List[int] = ["-1002233922329"]
     AUTO_GENERATE_LINK: bool = True
 
     model_config = SettingsConfigDict(
         env_file=f"{BASE_PATH}/.env",
     )
-from pydantic import BaseSettings, validator
-from typing import List
-
-class Config(BaseSettings):
-    ROOT_ADMINS_ID: List[int]
-    FORCE_SUB_CHANNELS: List[int]
 
     @validator('ROOT_ADMINS_ID', 'FORCE_SUB_CHANNELS', pre=True)
     def split_string_to_list(cls, v):
@@ -68,10 +62,8 @@ class Config(BaseSettings):
             return [int(item) for item in v.split(',')]
         return v
 
-config = Config()
-
     @classmethod
-    def settings_customise_sources(  # noqa: PLR0913
+    def settings_customise_sources(
         cls,
         settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
