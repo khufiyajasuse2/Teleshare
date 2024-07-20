@@ -46,10 +46,10 @@ class Config(BaseSettings):
     # Bot main config
     RATE_LIMITER: bool = True
     BACKUP_CHANNEL: -1002202226579
-    ROOT_ADMINS_ID: list[int] = [6371924437]
+    ROOT_ADMINS_ID: list[int] = ["6371924437"]
     PRIVATE_REQUEST: bool = False
     PROTECT_CONTENT: bool = True
-    FORCE_SUB_CHANNELS: list[int] = [-1002233922329]
+    FORCE_SUB_CHANNELS: list[int] = ["-1002233922329"]
     AUTO_GENERATE_LINK: bool = True
 
     model_config = SettingsConfigDict(
