@@ -55,6 +55,20 @@ class Config(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=f"{BASE_PATH}/.env",
     )
+from pydantic import BaseSettings, validator
+from typing import List
+
+class Config(BaseSettings):
+    ROOT_ADMINS_ID: List[int]
+    FORCE_SUB_CHANNELS: List[int]
+
+    @validator('ROOT_ADMINS_ID', 'FORCE_SUB_CHANNELS', pre=True)
+    def split_string_to_list(cls, v):
+        if isinstance(v, str):
+            return [int(item) for item in v.split(',')]
+        return v
+
+config = Config()
 
     @classmethod
     def settings_customise_sources(  # noqa: PLR0913
