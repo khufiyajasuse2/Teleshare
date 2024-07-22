@@ -35,7 +35,7 @@ class Config(BaseSettings):
 
     API_ID: 27573283
     API_HASH: eca55c9f1b0a14260e0ee1978aa17b2b
-    BOT_TOKEN:  7297125221:AAF_hS-k7BSBaUDY0f9fL0j54XZdKWfFACQ
+    BOT_TOKEN: 7297125221:AAF_hS-k7BSBaUDY0f9fL0j54XZdKWfFACQ
     BOT_WORKER: int = 8
     BOT_SESSION: str = "Ayesha121_bot"
     BOT_MAX_MESSAGE_CACHE_SIZE: int = 1250
@@ -49,7 +49,7 @@ class Config(BaseSettings):
     ROOT_ADMINS_ID: list[int] = [6371924437]
     PRIVATE_REQUEST: bool = False
     PROTECT_CONTENT: bool = True 
-    FORCE_SUB_CHANNELS: list[int] = [-1002233922329]
+    FORCE_SUB_CHANNELS: list[int] = [-1002168028572]
     AUTO_GENERATE_LINK: bool = True
 
     model_config = SettingsConfigDict(
