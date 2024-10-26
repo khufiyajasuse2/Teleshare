@@ -37,7 +37,7 @@ class Config(BaseSettings):
     API_HASH: eca55c9f1b0a14260e0ee1978aa17b2b
     BOT_TOKEN: 
     BOT_WORKER: int = 8
-    BOT_SESSION: str = "Ayesha121_bot"
+    BOT_SESSION: str = "Ayeshasiddiqui_bot"
     BOT_MAX_MESSAGE_CACHE_SIZE: int = 1250
 
     MONGO_DB_URL: mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla
@@ -45,11 +45,11 @@ class Config(BaseSettings):
 
     # Bot main config
     RATE_LIMITER: bool = True
-    BACKUP_CHANNEL: -1002202226579
+    BACKUP_CHANNEL: -1002308831447
     ROOT_ADMINS_ID: list[int] = [6371924437]
     PRIVATE_REQUEST: bool = False
     PROTECT_CONTENT: bool = True 
-    FORCE_SUB_CHANNELS: list[int] = [-1002168028572]
+    FORCE_SUB_CHANNELS: list[int] = [-1002368840069]
     AUTO_GENERATE_LINK: bool = True
 
     model_config = SettingsConfigDict(
