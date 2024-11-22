@@ -37,10 +37,10 @@ class Config(BaseSettings):
     API_HASH: eca55c9f1b0a14260e0ee1978aa17b2b
     BOT_TOKEN: 
     BOT_WORKER: int = 8
-    BOT_SESSION: str = "Ayeshasiddiqui_bot"
+    BOT_SESSION: str = "@Sumairakhan_bot"
     BOT_MAX_MESSAGE_CACHE_SIZE: int = 1250
 
-    MONGO_DB_URL: mongodb+srv://ashwinimalaysian:5gRvQgPW4DRhlEpE@pehla.uuzwevb.mongodb.net/?retryWrites=true&w=majority&appName=pehla
+    MONGO_DB_URL: mongodb+srv://sumairakhan122112:fqkbPZBYIADqX1fk@terabox.cv45syt.mongodb.net/?retryWrites=true&w=majority&appName=terabox
     MONGO_DB_NAME: str = "pehla"
 
     # Bot main config
